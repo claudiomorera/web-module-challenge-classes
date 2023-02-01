@@ -193,9 +193,29 @@ teacher.grade(student.name, "Python");
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
 
-class Student {
-   
+class Student extends Lambdasian {
+  constructor(attrs, previousBackground, className, favSubjects) {
+      super(attrs);
+      this.previousBackground = previousBackground;
+      this.className = className;
+      this.favSubjects = favSubjects;
+  }
+  listSubjects(){
+      return `${this.favSubjects}`		
+  }
+  PRAssignment(subject){
+      return `${this.name} has submitted a PR for ${subject}`;
+  }
+  sprintChallenge(subject){
+      return `${this.name} has begun sprint challenge on ${subject}`
+  }
 }
+
+const student = new Student ({name:"James", age:23, location:"San Antonio, TX"}, "construction worker", "CS132", ['HTML', 'CSS', 'JS']);
+student.listSubjects();
+student.PRAssignment("JS");
+student.sprintChallenge("JS Classes!");
+
 
 /*
   TASK 6
@@ -211,9 +231,22 @@ class Student {
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
 
-class ProjectManager {
-   
+class ProjectManager extends Instructor {
+   constructor(attrs, gradClassName, favInstructor) {
+     super(attrs);
+     this.gradClassName = gradClassName;
+     this.favInstructor = favInstructor;
+   }
+   standUp(channel){
+     return `${this.name} announces to ${channel}, @channel standytimes!`;
+   }
+   debusCode(student, subject){
+     return `${this.name} debugs ${student.name}'s code on ${subject}`;
+   }
 }
+const projectManager = new ProjectManager ({name:"Billy", age:44, location:"New York City, NY"}, "CS1", "Sean");
+projectManager.standUp(22);
+projectManager.debusCode({name:"James"}, "JS");
 
 /*
   STRETCH PROBLEM (no tests!)
