@@ -50,7 +50,7 @@ class Person {
     this.stomach = [];
   }
   eat (food) {
-    if (this.stomach <= 10) {
+    if (this.stomach < 10) {
       return this.stomach.push(food);
     }
   }
