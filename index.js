@@ -211,10 +211,10 @@ class Student extends Lambdasian {
   }
 }
 
-const student = new Student ({name:"James", age:23, location:"San Antonio, TX"}, "construction worker", "CS132", ['HTML', 'CSS', 'JS']);
-student.listSubjects();
-student.PRAssignment("JS");
-student.sprintChallenge("JS Classes!");
+const student1 = new Student ({name:"James", age:23, location:"San Antonio, TX"}, "construction worker", "CS132", ['HTML', 'CSS', 'JS']);
+student1.listSubjects();
+student1.PRAssignment("JS");
+student1.sprintChallenge("JS Classes!");
 
 
 /*
