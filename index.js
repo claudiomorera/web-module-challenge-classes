@@ -81,8 +81,37 @@ console.log(mary);
 */
 
 class Car {
+  constructor(model, milesPerGallon){
+    this.model = model;
+    
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
+  }
+  fill (gallons) {
+    return this.tank += gallons;
+  }
   
+  drive (distance) {
+    // tank = 16, mpg = 12.31, then 16 * 12.31 = 196.96 miles
+    const driveableMiles = this.tank * this.milesPerGallon;
+	if(distance <= driveableMiles) {
+		this.odometer += distance;
+		this.tank = this.tank - (distance / this.milesPerGallon);
+	} 
+	else {
+		this.odometer = this.odometer + driveableMiles;
+		this.tank = 0;
+		return `I ran out of gas ${this.odometer} miles`;
+	}
+    
+ }
 }
+
+/*FORD MUSTANG 1965: MPG, every 12.31 miles a gallon is consumed. Its tank capacity is 16 gallons*/
+
+const fordMustang65 = new Car ("Mustang", 12.31);
+fordMustang65.fill(16);
 
 /*
   TASK 3
@@ -98,9 +127,18 @@ class Car {
 */
 
 class Lambdasian {
-  
+  constructor(attrs){
+    this.name = attrs.name;
+    this.age = attrs.age;
+    this.location = attrs.location;
+  }
+  speak () {
+    return `Hello my name is ${this.name}, I am from ${this.location}`;
+  }
 }
 
+const person1 = new Lambdasian({name:"Mitsuki", age:1, location:"Osaka, Japan"});
+console.log(person1.speak());
 /*
   TASK 4
     - Write an Instructor class extending Lambdasian.
@@ -116,9 +154,28 @@ class Lambdasian {
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
 
-class Instructor {
-
+class Instructor extends Lambdasian {
+  constructor(attrs, specialty, favLanguage, catchPhrase){
+    super(attrs);
+    this.specialty = specialty;
+    this.favLanguage = favLanguage;
+    this.catchPhrase = catchPhrase;
+  }
+ 
+  demo (subject) {
+    return `Today we are learning about ${subject}`
+  }
+  //student parameter is an object
+  grade (student, subject) {
+    return `${student.name} receives a perfect score on ${subject}`;
+  }
 }
+const teacher = new Instructor ({name:"John", age:30, location:"Utah, USA"}, "Redux", "JavaScript", "Don't forget the homies");
+teacher.demo("React");
+
+const student = {name:"Robert"}
+
+teacher.grade(student.name, "Python");
 
 /*
   TASK 5
