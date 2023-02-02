@@ -137,7 +137,7 @@ class Lambdasian {
   }
 }
 
-const person1 = new Lambdasian({name:"Mitsuki", age:1, location:"Osaka, Japan"});
+const person1 = new Lambdasian({name:"Mitsuki", age:17, location:"Osaka, Japan"});
 console.log(person1.speak());
 /*
   TASK 4
@@ -246,7 +246,7 @@ class ProjectManager extends Instructor {
 }
 const projectManager = new ProjectManager ({name:"Billy", age:44, location:"New York City, NY"}, "CS1", "Sean");
 projectManager.standUp(22);
-projectManager.debusCode({name:"James"}, "JS");
+projectManager.debusCode(student1, "JS");
 
 /*
   STRETCH PROBLEM (no tests!)
