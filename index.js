@@ -202,12 +202,6 @@ class Student extends Lambdasian {
   sprintChallenge(subject){
       return `${this.name} has begun sprint challenge on ${subject}`;
   }
-  grade (number) {
-    if (number >= 90) {return "A"} 
-    else if (number >= 80 and number < 90) {return "B"} 
-    else if (number >= 67 and number < 79) {return "C"}
-    else if (number < 65) {return "F"}
-  }
 }
 
 
