@@ -221,8 +221,8 @@ class Student extends Lambdasian {
 */
 
 class ProjectManager extends Instructor {
-   constructor({name, age, location, sepacialty, favLanguage, catchPhrase, gradClassName, favInstructor}) {
-     super({name, age, location, sepacialty, favLanguage, catchPhrase, gradClassName, favInstructor});
+   constructor({name, age, location, specialty, favLanguage, catchPhrase, gradClassName, favInstructor}) {
+     super({name, age, location, specialty, favLanguage, catchPhrase, gradClassName, favInstructor});
      this.gradClassName = gradClassName;
      this.favInstructor = favInstructor;
    }
