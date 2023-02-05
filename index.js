@@ -44,14 +44,14 @@ class Airplane {
 */
 
 class Person {
-  constructor(name, age){
+  constructor(name, age) {
     this.name = name;
     this.age = age;
     this.stomach = [];
   }
   eat (food) {
-    if (this.stomach < 10) {
-      return this.stomach.push(food);
+    if (this.stomach.length < 10) {
+      this.stomach.push(food);
     }
   }
   poop () {
@@ -83,7 +83,6 @@ console.log(mary);
 class Car {
   constructor(model, milesPerGallon){
     this.model = model;
-    
     this.milesPerGallon = milesPerGallon;
     this.tank = 0;
     this.odometer = 0;
@@ -95,7 +94,7 @@ class Car {
   drive (distance) {
     // tank = 16, mpg = 12.31, then 16 * 12.31 = 196.96 miles
     const driveableMiles = this.tank * this.milesPerGallon;
-	if(distance <= driveableMiles) {
+	if (distance <= driveableMiles) {
 		this.odometer += distance;
 		this.tank = this.tank - (distance / this.milesPerGallon);
 	} 
@@ -127,18 +126,17 @@ fordMustang65.fill(16);
 */
 
 class Lambdasian {
-  constructor(attrs){
-    this.name = attrs.name;
-    this.age = attrs.age;
-    this.location = attrs.location;
+  constructor({name, age, location}){
+   this.name = name;
+   this.age = age;
+   this.location = location;
   }
   speak () {
     return `Hello my name is ${this.name}, I am from ${this.location}`;
   }
 }
 
-const person1 = new Lambdasian({name:"Mitsuki", age:17, location:"Osaka, Japan"});
-console.log(person1.speak());
+
 /*
   TASK 4
     - Write an Instructor class extending Lambdasian.
@@ -155,8 +153,8 @@ console.log(person1.speak());
 */
 
 class Instructor extends Lambdasian {
-  constructor(attrs, specialty, favLanguage, catchPhrase){
-    super(attrs);
+  constructor({name, age, location, specialty, favLanguage, catchPhrase}){
+    super({name, age, location, specialty, favLanguage, catchPhrase});
     this.specialty = specialty;
     this.favLanguage = favLanguage;
     this.catchPhrase = catchPhrase;
@@ -170,12 +168,7 @@ class Instructor extends Lambdasian {
     return `${student.name} receives a perfect score on ${subject}`;
   }
 }
-const teacher = new Instructor ({name:"John", age:30, location:"Utah, USA"}, "Redux", "JavaScript", "Don't forget the homies");
-teacher.demo("React");
 
-const student = {name:"Robert"}
-
-teacher.grade(student.name, "Python");
 
 /*
   TASK 5
@@ -194,27 +187,29 @@ teacher.grade(student.name, "Python");
 */
 
 class Student extends Lambdasian {
-  constructor(attrs, previousBackground, className, favSubjects) {
-      super(attrs);
+  constructor({name, age, location, previousBackground, className, favSubjects}) {
+      super({name, age, location, previousBackground, className, favSubjects});
       this.previousBackground = previousBackground;
       this.className = className;
       this.favSubjects = favSubjects;
   }
   listSubjects(){
-      return `${this.favSubjects}`		
+      return `Loving ${this.favSubjects}`;
   }
   PRAssignment(subject){
       return `${this.name} has submitted a PR for ${subject}`;
   }
   sprintChallenge(subject){
-      return `${this.name} has begun sprint challenge on ${subject}`
+      return `${this.name} has begun sprint challenge on ${subject}`;
+  }
+  grade (number) {
+    if (number >= 90) {return "A"} 
+    else if (number >= 80 and number < 90) {return "B"} 
+    else if (number >= 67 and number < 79) {return "C"}
+    else if (number < 65) {return "F"}
   }
 }
 
-const student1 = new Student ({name:"James", age:23, location:"San Antonio, TX"}, "construction worker", "CS132", ['HTML', 'CSS', 'JS']);
-student1.listSubjects();
-student1.PRAssignment("JS");
-student1.sprintChallenge("JS Classes!");
 
 
 /*
@@ -232,21 +227,19 @@ student1.sprintChallenge("JS Classes!");
 */
 
 class ProjectManager extends Instructor {
-   constructor(attrs, gradClassName, favInstructor) {
-     super(attrs);
+   constructor({name, age, location, sepacialty, favLanguage, catchPhrase, gradClassName, favInstructor}) {
+     super({name, age, location, sepacialty, favLanguage, catchPhrase, gradClassName, favInstructor});
      this.gradClassName = gradClassName;
      this.favInstructor = favInstructor;
    }
    standUp(channel){
-     return `${this.name} announces to ${channel}, @channel standytimes!`;
+     return `${this.name} announces to ${channel}, @channel standy times!`;
    }
-   debusCode(student, subject){
+   debugsCode(student, subject){
      return `${this.name} debugs ${student.name}'s code on ${subject}`;
    }
 }
-const projectManager = new ProjectManager ({name:"Billy", age:44, location:"New York City, NY"}, "CS1", "Sean");
-projectManager.standUp(22);
-projectManager.debusCode(student1, "JS");
+
 
 /*
   STRETCH PROBLEM (no tests!)
